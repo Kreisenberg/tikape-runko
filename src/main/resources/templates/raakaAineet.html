@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>raakaAineet</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>RaakaAine</h1>
+
+        <ul>
+            <li th:each="raakaAine : ${raakaAineet}">
+                <a th:href="@{~/raakaAineet/{id}(id=${raakaAine.id})}">
+                    <span th:text="${raakaAine.nimi}">User</span>
+                </a>
+            </li>
+        </ul> 
+
+        <p><a href="/">Palaa</a></p>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Luo smoothie</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <h2>Lisaa uusi Smoothie!</h2>
+        <ul>
+            <li th:each="smoothie : ${smoothiet}">
+                <a th:href="@{~/smoothiet/{id}(id=${smoothie.id})}">
+                    <span th:text="${smoothie.nimi}">User</span>
+                </a>
+                <form method="POST" th:action="@{~/smoothiet/{id}/poista}">                   
+                    <input type="hidden" th:value="${smoothie.id}" name="smoothieId"/>
+                    <input type="submit" value="Poista"/>
+                </form>
+            </li>
+        </ul>  
+        <form method="POST" action="/smoothiet">
+            <input type="text" name="nimi"/><br/>
+
+            <input type="submit" value="Lisaa!"/>
+        </form>
+        <h2>Lisaa uusi RaakaAine!</h2>
+        <ul>
+            <li th:each="raakaAine : ${raakaAineet}">
+                <a th:href="@{~/raakaAineet/{id}(id=${raakaAine.id})}">
+                    <span th:text="${raakaAine.nimi}">User</span>                    
+                </a>
+                <form method="POST" th:action="@{~/raakaAineet/{id}/poista}">                   
+                    <input type="hidden" th:value="${raakaAine.id}" name="raakaAineId"/>
+                    <input type="submit" value="Poista"/>
+                </form>
+            </li>
+        </ul> 
+        <form method="POST" action="/raakaAineet">
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisaa!"/>
+        </form>
+        <p><a href="/">Palaa</a></p>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>User's tasks</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1 th:text="${smoothie.nimi}">Snmoothie</h1>
+
+        <h2>Current tasks</h2>
+
+        <ul>
+            <li th:each="raakaAine : ${raakaAineet}">               
+                <span th:text="${raakaAine.raakaAine.nimi}">nimi</span>
+                <span th:text="${raakaAine.maara}">maara</span>
+                <span th:text="${raakaAine.ohje}">asd</span>             
+            </li>
+        </ul>
+        <form method="POST" action="@{~/smoothiet/{id}(id=${smoothie.id})}">
+            Lisattava raaka-aine<br/>
+            <select name="aine">
+                <option th:each="aine: ${valittavatRaakaAineet}" th:value="${aine.nimi}" th:text="${aine.nimi}" >
+                    aine
+                </option>
+            </select>
+            Jarjestys<br/>
+            <input type="text" name="jarjestys"/><br/>
+            Maara<br/>
+            <input type="text" name="maara"/><br/>
+            Ohje<br/>
+            <input type="text" name="ohje"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+        <p><a href="/">Palaa</a></p>
+    </body>
+</html>
